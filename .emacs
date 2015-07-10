@@ -3,11 +3,6 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-;; ;;ido mode
-;; (ido-mode 1)
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-everywhere t)
-
 ;; helm mode
 (require 'helm-config)
 (helm-mode 1)
@@ -53,3 +48,10 @@
 
 ;; for stats
 (require 'ess-site)
+
+;; default smartparens configuration
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
+;; rainbow parens
+(rainbow-delimiters-mode t)
