@@ -55,3 +55,6 @@
 
 ;; rainbow parens
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
