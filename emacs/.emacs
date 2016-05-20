@@ -15,6 +15,11 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;; i have fallen
+(setq evil-want-C-i-jump nil)
+(require 'evil)
+(evil-mode 1)
+
 
 ;; custom theme
 (load-theme 'monokai t)
