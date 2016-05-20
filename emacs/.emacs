@@ -54,13 +54,6 @@
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
 
-;; for stats
-(require 'ess-site)
-
-;; default smartparens configuration
-(require 'smartparens-config)
-(smartparens-global-mode t)
-
 ;; rainbow parens
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
