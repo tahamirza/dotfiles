@@ -1,12 +1,20 @@
+; the packages to install
+(setq package-list '(evil magit monokai-theme auctex rainbow-delimiters))
+
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-;; helm mode
-(require 'helm-config)
-(helm-mode 1)
-(helm-autoresize-mode 1)
+; fetch the list of packages available
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 
 ;; custom theme
 (load-theme 'monokai t)
