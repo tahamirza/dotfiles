@@ -32,11 +32,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; (add-to-list 'default-frame-alist '(font . "Terminus-11"))
-;; (set-face-attribute 'default t :font "Terminus-11")
-
-(set-default-font "Terminus-11")
-
 ;; sets up wordwrap for org-mode and text-mode
 (add-hook 'org-mode-hook
 	  (lambda ()
