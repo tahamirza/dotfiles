@@ -32,12 +32,13 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; sets up wordwrap for org-mode and text-mode
+;; sets up org-mode
 (add-hook 'org-mode-hook
 	  (lambda ()
-	    (visual-line-mode t)
-	    (org-indent-mode t)))
-(add-hook 'text-mode-hook 'visual-line-mode)
+	    (variable-pitch-mode t)
+	    (auto-fill-mode t)
+	    (flyspell-mode t)
+	    ))
 
 ;; i usually want spellchecking in my LaTeX
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -49,11 +50,6 @@
 (setq TeX-PDF-mode 1)
 
 (setq TeX-engine 'xetex)
-
-;;setup deft for org-mode
-(setq deft-extension "org")
-(setq deft-text-mode 'org-mode)
-(setq deft-directory "~/shared_docs/notes/")
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
