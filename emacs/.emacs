@@ -28,9 +28,11 @@
 ;; custom theme
 (load-theme 'wombat t)
 
-;; get rid of the silly scrollbar and tool bar
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; who needs guis
+(when (display-graphic-p)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
 
 ;; sets up org-mode
 (add-hook 'org-mode-hook
