@@ -1,5 +1,5 @@
 ; the packages to install
-(setq package-list '(evil magit monokai-theme auctex rainbow-delimiters))
+(setq package-list '(evil magit auctex rainbow-delimiters))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -26,7 +26,7 @@
 (ido-mode t)
 
 ;; custom theme
-(load-theme 'monokai t)
+(load-theme 'wombat t)
 
 ;; get rid of the silly scrollbar and tool bar
 (tool-bar-mode -1)
