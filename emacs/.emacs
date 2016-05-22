@@ -63,3 +63,6 @@
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; Just open symlinks.
+(setq find-file-visit-truename t)
