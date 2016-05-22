@@ -29,7 +29,9 @@
 (load-theme 'wombat t)
 
 ;; who needs guis
-(when (display-graphic-p)
+(when (or
+       (display-graphic-p)
+       (daemonp))
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
