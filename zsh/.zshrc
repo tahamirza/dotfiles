@@ -17,4 +17,6 @@ setopt HIST_IGNORE_SPACE
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
+export WINEARCH=win32
+
 fortune -s | cowsay -w
