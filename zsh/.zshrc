@@ -10,13 +10,15 @@ alias emacs='emacsclient -t'
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-autoload -Uz compinit
+autoload -Uz compinit promptinit
 compinit
+promptinit
 
 setopt completeinword
 setopt HIST_IGNORE_SPACE
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+prompt adam1
 
 export WINEARCH=win32
 
