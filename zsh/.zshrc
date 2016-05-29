@@ -18,7 +18,7 @@ setopt completeinword
 setopt HIST_IGNORE_SPACE
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-prompt adam1
+prompt redhat
 
 export WINEARCH=win32
 
