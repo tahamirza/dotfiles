@@ -21,6 +21,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 prompt redhat
 
 export WINEARCH=win32
+export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
