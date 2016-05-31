@@ -39,6 +39,7 @@
 ;; sets up org-mode
 (add-hook 'org-mode-hook
 	  (lambda ()
+	    (org-indent-mode t)
 	    (variable-pitch-mode t)
 	    (auto-fill-mode t)
 	    (flyspell-mode t)
