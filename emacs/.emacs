@@ -1,5 +1,5 @@
 ; the packages to install
-(setq package-list '(evil magit auctex rainbow-delimiters))
+(setq package-list '(evil magit auctex rainbow-delimiters markdown-mode))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -36,17 +36,21 @@
   (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-;; sets up org-mode
+;; setup writing modes
+(defun writing-mode ()
+  (variable-pitch-mode t)
+  (auto-fill-mode t)
+  (flyspell-mode t))
+
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    (org-indent-mode t)
-	    (variable-pitch-mode t)
-	    (auto-fill-mode t)
-	    (flyspell-mode t)
+	    (writing-mode)
 	    ))
-
-;; i usually want spellchecking in my LaTeX
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook
+	  'writing-mode)
+(add-hook 'LaTeX-mode-hook
+	  'writing-mode)
 
 ;; got tired of the splash screen
 (setq inhibit-splash-screen t)
