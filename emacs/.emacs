@@ -25,9 +25,6 @@
 (setq ido-everywhere t)
 (ido-mode t)
 
-;; custom theme
-(load-theme 'wombat t)
-
 ;; who needs guis
 (when (or
        (display-graphic-p)
