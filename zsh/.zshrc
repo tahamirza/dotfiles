@@ -22,6 +22,7 @@ prompt redhat
 
 export WINEARCH=win32
 export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
 
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
