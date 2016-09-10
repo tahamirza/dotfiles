@@ -48,6 +48,8 @@
 
 ;; got tired of the splash screen
 (setq inhibit-splash-screen t)
+(setq initial-major-mode 'fundamental-mode)
+(setq initial-scratch-message 'nil)
 
 ;; makes auctex work with pdfs by default
 (setq TeX-PDF-mode 1)
