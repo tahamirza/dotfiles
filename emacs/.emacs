@@ -40,10 +40,7 @@
   (flyspell-mode t))
 
 (add-hook 'org-mode-hook
-	  (lambda ()
-	    (org-indent-mode t)
-	    (writing-mode)
-	    ))
+	  'writing-mode)
 (add-hook 'markdown-mode-hook
 	  'writing-mode)
 (add-hook 'LaTeX-mode-hook
