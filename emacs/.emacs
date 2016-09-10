@@ -34,17 +34,11 @@
   (scroll-bar-mode -1))
 
 ;; setup writing modes
-(defun writing-mode ()
-  (variable-pitch-mode t)
-  (auto-fill-mode t)
-  (flyspell-mode t))
-
-(add-hook 'org-mode-hook
-	  'writing-mode)
-(add-hook 'markdown-mode-hook
-	  'writing-mode)
-(add-hook 'LaTeX-mode-hook
-	  'writing-mode)
+(add-hook 'text-mode-hook
+	  (lambda ()
+	    (variable-pitch-mode t)
+	    (auto-fill-mode t)
+	    (flyspell-mode t)))
 
 ;; got tired of the splash screen
 (setq inhibit-splash-screen t)
