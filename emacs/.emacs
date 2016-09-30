@@ -1,5 +1,5 @@
 ; the packages to install
-(setq package-list '(evil magit auctex rainbow-delimiters markdown-mode))
+(setq package-list '(evil magit projectile company flycheck auctex markdown-mode flx-ido))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -21,9 +21,30 @@
 (evil-mode 1)
 
 ;; ido
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
 (setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode t)
+(setq ido-use-faces nil)
+
+;; projectile
+(projectile-global-mode t)
+
+;; rtags
+(require 'rtags)
+(rtags-start-process-unless-running)
+(setq rtags-autostart-diagnostics t)
+(setq rtags-completions-enabled t)
+
+;; company
+(require 'company)
+(global-company-mode)
+(push 'company-rtags company-backends)
+
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(require 'flycheck-rtags)
 
 ;; who needs guis
 (when (fboundp 'menu-bar-mode)
@@ -40,6 +61,12 @@
 	    (auto-fill-mode t)
 	    (flyspell-mode t)))
 
+;; setup programming modes
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (variable-pitch-mode t)
+	    (font-lock-mode -1)))
+
 ;; got tired of the splash screen
 (setq inhibit-splash-screen t)
 (setq initial-major-mode 'fundamental-mode)
@@ -53,11 +80,11 @@
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
 
-;; rainbow parens
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
+
+;; c-style
+(setq c-default-style "bsd")
