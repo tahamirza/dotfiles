@@ -1,13 +1,24 @@
 ; the packages to install
-(setq package-list '(evil
+(setq package-list '(
+		     ;; keybindings
+		     evil
+		     key-chord
+
+		     ;; project management
 		     magit
 		     projectile
+
+		     ;; completion
 		     company
 		     flycheck
+		     flx-ido
+		     smex
+
+		     ;; extra modes
 		     auctex
 		     markdown-mode
 		     php-mode
-		     flx-ido))
+		     ))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -22,7 +33,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; i have fallen
+;; evil
 (setq evil-want-C-i-jump nil)
 (require 'evil)
 (evil-mode 1)
@@ -34,6 +45,10 @@
 (flx-ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
+
+;; smex
+(require 'smex)
+(smex-initialize)
 
 ;; projectile
 (projectile-global-mode t)
@@ -84,11 +99,6 @@
 
 (setq TeX-engine 'xetex)
 
-;; recompile hotkey
-(global-set-key [(f9)] 'recompile)
-
-;; magit
-(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
@@ -96,3 +106,37 @@
 ;; c-style
 (setq c-default-style "bsd")
 
+;; *****keybinds*****
+(require 'key-chord)
+(key-chord-mode 1)
+
+;; escape to normalcy
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+
+;; smex
+(global-set-key (kbd "M-x") 'smex)
+(define-key evil-normal-state-map (kbd "SPC") 'smex)
+
+;; recompile hotkey
+(global-set-key [(f9)] 'recompile)
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (key-chord rainbow-delimiters projectile php-mode markdown-mode magit flycheck flx-ido evil company auctex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
