@@ -1,5 +1,13 @@
 ; the packages to install
-(setq package-list '(evil magit projectile company flycheck auctex markdown-mode flx-ido))
+(setq package-list '(evil
+		     magit
+		     projectile
+		     company
+		     flycheck
+		     auctex
+		     markdown-mode
+		     php-mode
+		     flx-ido))
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -7,8 +15,7 @@
 (package-initialize)
 
 ; fetch the list of packages available
-(unless package-archive-contents
-  (package-refresh-contents))
+(package-refresh-contents)
 
 ; install the missing packages
 (dolist (package package-list)
@@ -88,3 +95,4 @@
 
 ;; c-style
 (setq c-default-style "bsd")
+
