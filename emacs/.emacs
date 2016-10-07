@@ -116,6 +116,7 @@
 ;; smex
 (global-set-key (kbd "M-x") 'smex)
 (define-key evil-normal-state-map (kbd "SPC") 'smex)
+(define-key evil-visual-state-map (kbd "SPC") 'smex)
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
