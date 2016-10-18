@@ -318,6 +318,8 @@ you should place your code here."
 
   (setq powerline-default-separator 'zigzag)
 
+  (global-git-commit-mode t)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
