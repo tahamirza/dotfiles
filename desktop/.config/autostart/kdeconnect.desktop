@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=kdeconnect daemon
+Exec=/usr/lib/kdeconnectd
+Type=Application
