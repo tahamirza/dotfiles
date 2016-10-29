@@ -320,6 +320,12 @@ you should place your code here."
 
   (global-git-commit-mode t)
 
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (auto-fill-mode t)
+              (aggressive-indent-mode t)
+              (toggle-truncate-lines t)))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
