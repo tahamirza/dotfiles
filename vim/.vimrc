@@ -23,9 +23,10 @@ set visualbell
 
 set mouse=a
 
-set cmdheight=2
-
 set number
+set relativenumber
+
+set colorcolumn=81
 
 inoremap fd <ESC>
 
