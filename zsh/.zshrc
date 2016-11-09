@@ -16,7 +16,6 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # aliases
 alias ls='ls --color=auto'
-alias emacs='emacsclient -t'
 alias t='todo.sh'
 
 # completion
@@ -34,9 +33,8 @@ export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
 
 # editors
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -t"
-export ALTERNATE_EDITOR=""
+export EDITOR="vim"
+export VISUAL="vim"
 
 # fun
 fortune -s | cowsay -w
