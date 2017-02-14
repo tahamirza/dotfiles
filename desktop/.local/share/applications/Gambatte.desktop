@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Gambatte
+Comment=A GB and GBC emulator
+MimeType=application/x-gameboy-color-rom;application/x-gameboy-rom;
+Exec=gambatte-qt %f
+Terminal=false
+Categories=Games;Emulation;
