@@ -7,7 +7,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+Plug 'robertmeta/nofrils'
+
 call plug#end()
+
+let g:nofrils_heavylinenumbers=1
+let g:nofrils_strbackgrounds=1
+let g:nofrils_heavycomments=1
+colorscheme nofrils-light
 
 
 autocmd! BufWritePost * Neomake
@@ -24,3 +31,4 @@ set number
 set relativenumber
 set colorcolumn=81
 set showmatch
+set termguicolors
