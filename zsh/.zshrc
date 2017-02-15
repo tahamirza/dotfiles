@@ -33,8 +33,9 @@ export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
 
 # editors
-export EDITOR="vim"
-export VISUAL="vim"
+alias vim=nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # fun
 fortune -s | cowsay -w
