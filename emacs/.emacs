@@ -17,6 +17,7 @@
 
 (use-package helm
   :bind ("M-x" . helm-M-x)
+  :bind ("C-x C-f" . helm-find-files)
   :config
   (helm-mode 1))
 
@@ -44,7 +45,10 @@
   (setq TeX-engine 'xetex))
 
 ;; asciidoc
-(use-package adoc-mode)
+(use-package adoc-mode
+  :mode ("\\.adoc\\'" . adoc-mode)
+  :config
+  (add-hook 'adoc-mode-hook 'variable-pitch-mode))
 
 ;; magit
 (use-package magit
