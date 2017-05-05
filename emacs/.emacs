@@ -1,104 +1,77 @@
-; the packages to install
-(setq package-list '(
-		     ;; keybindings
-		     evil
-		     key-chord
-
-		     ;; project management
-		     magit
-		     projectile
-
-		     ;; completion
-		     company
-		     flycheck
-		     flx-ido
-		     smex
-
-		     ;; extra modes
-		     auctex
-		     markdown-mode
-		     php-mode
-		     ))
-
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+			 ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-; fetch the list of packages available
-(package-refresh-contents)
+;; install use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+(setq use-package-always-ensure t)
+
+;; key chords
+(use-package key-chord
+  :config
+  (key-chord-mode 1))
+
+(use-package helm
+  :bind ("M-x" . helm-M-x)
+  :config
+  (helm-mode 1))
 
 ;; evil
-(setq evil-want-C-i-jump nil)
-(require 'evil)
-(evil-mode 1)
-
-;; ido
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-
-;; smex
-(require 'smex)
-(smex-initialize)
+(use-package evil
+  :init
+  (setq evil-want-C-i-jump nil)
+  :config
+  (evil-mode 1)
+  (key-chord-define evil-insert-state-map "fd" 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "SPC") 'helm-M-x)
+  (define-key evil-visual-state-map (kbd "SPC") 'helm-M-x))
 
 ;; projectile
-(projectile-global-mode t)
+(use-package projectile
+  :config
+  (projectile-global-mode t))
 
-;; rtags
-(require 'rtags)
-(rtags-start-process-unless-running)
-(setq rtags-autostart-diagnostics t)
-(setq rtags-completions-enabled t)
+;; auctex
+(use-package tex
+  :defer t
+  :ensure auctex
+  :config
+  (setq TeX-PDF-mode 1)
+  (setq TeX-engine 'xetex))
 
-;; company
-(require 'company)
-(global-company-mode)
-(push 'company-rtags company-backends)
+;; asciidoc
+(use-package adoc-mode)
 
-;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(require 'flycheck-rtags)
+;; magit
+(use-package magit
+  :bind ("C-x g" . magit-status))
+
+;; nyan
+(use-package nyan-mode
+  :init
+  (setq nyan-animate-nyancat t)
+  (setq nyan-wavy-trail t)
+  :config
+  (nyan-mode 1))
+
+;; theme
+(use-package leuven-theme
+  :config
+  (load-theme 'leuven t))
 
 ;; who needs guis
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
+(when window-system
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
   (scroll-bar-mode -1))
 
-;; setup writing modes
-(add-hook 'text-mode-hook
-	  (lambda ()
-	    (variable-pitch-mode t)
-	    (auto-fill-mode t)
-	    (flyspell-mode t)))
-
-;; setup programming modes
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (variable-pitch-mode t)
-	    (font-lock-mode -1)))
-
-;; got tired of the splash screen
-(setq inhibit-splash-screen t)
+;; got tired of scratch being in lisp mode
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message 'nil)
-
-;; makes auctex work with pdfs by default
-(setq TeX-PDF-mode 1)
-
-(setq TeX-engine 'xetex)
-
 
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
@@ -106,26 +79,8 @@
 ;; c-style
 (setq c-default-style "bsd")
 
-;; *****keybinds*****
-(require 'key-chord)
-(key-chord-mode 1)
-
-;; escape to normalcy
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-
-;; smex
-(global-set-key (kbd "M-x") 'smex)
-(define-key evil-normal-state-map (kbd "SPC") 'smex)
-(define-key evil-visual-state-map (kbd "SPC") 'smex)
-
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
-
-;; magit
-(global-set-key (kbd "C-x g") 'magit-status)
-
-
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -134,7 +89,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (key-chord rainbow-delimiters projectile php-mode markdown-mode magit flycheck flx-ido evil company auctex))))
+    (esup magit use-package projectile key-chord evil auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
