@@ -10,6 +10,7 @@
 
 (setq use-package-always-ensure t)
 
+
 ;; key chords
 (use-package key-chord
   :config
@@ -20,16 +21,6 @@
   :bind ("C-x C-f" . helm-find-files)
   :config
   (helm-mode 1))
-
-;; evil
-(use-package evil
-  :init
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode 1)
-  (key-chord-define evil-insert-state-map "fd" 'evil-normal-state)
-  (define-key evil-normal-state-map (kbd "SPC") 'helm-M-x)
-  (define-key evil-visual-state-map (kbd "SPC") 'helm-M-x))
 
 ;; projectile
 (use-package projectile
@@ -67,13 +58,11 @@
   :config
   (load-theme 'leuven t))
 
-;; who needs guis
-(when window-system
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+;; settings
+(use-package better-defaults)
 
 ;; got tired of scratch being in lisp mode
+(setq inhibit-startup-screen t)
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message 'nil)
 
@@ -85,6 +74,9 @@
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
+
+;; windmove
+(windmove-default-keybindings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
