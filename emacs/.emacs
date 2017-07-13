@@ -54,9 +54,11 @@
   (nyan-mode 1))
 
 ;; theme
-(use-package leuven-theme
-  :config
-  (load-theme 'leuven t))
+
+(if (display-graphic-p)
+    (use-package leuven-theme
+      :config
+      (load-theme 'leuven t)))
 
 ;; settings
 (use-package better-defaults)
