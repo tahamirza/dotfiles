@@ -25,7 +25,8 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 source /usr/share/bash-completion/completions/todo.sh
 
 # the prompt
-prompt redhat
+powerline-daemon -q
+. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # wine
 export WINEARCH=win32
