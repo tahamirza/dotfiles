@@ -1,0 +1,66 @@
+pkgname=st
+pkgver=0.7.30.g8dacdfb
+pkgrel=1
+pkgdesc='Simple virtual terminal emulator for X'
+url='http://st.suckless.org/'
+arch=('i686' 'x86_64')
+license=('MIT')
+options=('zipman')
+depends=('libxft')
+makedepends=('ncurses' 'libxext' 'git')
+epoch=1
+# include config.h and any patches you want to have applied here
+source=('git://git.suckless.org/st'
+	'http://st.suckless.org/patches/st-no_bold_colors-20170623-b331da5.diff'
+	'http://st.suckless.org/patches/st-solarized-both-20170626-b331da5.diff'
+	'simple-terminal.desktop')
+sha1sums=('SKIP'
+          '67b45554811e6ca8fb05a70acf3456a0202cadfe'
+          '0c39f36d8d64c61401643b8e4b9188a4f0ccc977'
+          '575c1b97112bacac0330030d898a5c744b30af64')
+
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+
+pkgver() {
+	cd "${pkgname}"
+	git describe --tags |sed 's/-/./g'
+}
+
+prepare() {
+	local file
+	cd "${pkgname}"
+	sed \
+		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \
+		-e 's/CFLAGS =/CFLAGS +=/g' \
+		-e 's/LDFLAGS =/LDFLAGS +=/g' \
+		-e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
+		-i config.mk
+	sed '/@tic/d' -i Makefile
+	for file in "${source[@]}"; do
+		if [[ "$file" == *.diff || "$file" == *.patch ]]; then
+			# add all patches present in source array
+			patch -Np1 <"$srcdir/$(basename ${file})"
+		fi
+	done
+	sed \
+		-e '/char font/s/= .*/= "Monospace:pixelsize=15";/' \
+		-e '/char worddelimiters/s/= .*/= " '"'"'`\\\"()[]{}<>|";/' \
+		-e '/int defaultcs/s/= .*/= 1;/' \
+		-i config.def.h
+}
+
+build() {
+	cd "${pkgname}"
+	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+	install -Dm644 simple-terminal.desktop \
+		${pkgdir}/usr/share/applications/simple-terminal.desktop
+
+	cd "${pkgname}"
+	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
+}
