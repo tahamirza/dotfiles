@@ -21,6 +21,4 @@ set ruler
 set confirm
 set number
 set relativenumber
-set colorcolumn=81
 set showmatch
-set termguicolors
