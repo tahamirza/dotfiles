@@ -11,21 +11,45 @@
 (setq use-package-always-ensure t)
 
 
-;; key chords
-(use-package key-chord
-  :config
-  (key-chord-mode 1))
-
+;; helm
 (use-package helm
   :bind ("M-x" . helm-M-x)
   :bind ("C-x C-f" . helm-find-files)
   :config
   (helm-mode 1))
 
-;; projectile
+;; projects
 (use-package projectile
   :config
-  (projectile-global-mode t))
+  (projectile-mode t))
+
+;; completion
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+;; command completion
+(use-package which-key
+  :config
+  (which-key-mode))
+
+;; on the fly syntax checking
+(use-package flycheck
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode))
+
+;; snippets
+(use-package yasnippet
+  :config
+  (add-hook 'prog-mode-hook 'yas-global-mode))
+
+;; c++
+(use-package irony)
+(use-package rtags)
+(use-package cmake-ide
+  :config
+  (add-hook 'c-mode-hook 'cmake-ide-setup)
+  (add-hook 'c++-mode-hook 'cmake-ide-setup))
 
 ;; auctex
 (use-package tex
@@ -35,13 +59,28 @@
   (setq TeX-PDF-mode 1)
   (setq TeX-engine 'xetex))
 
+;; line wrapping
+(use-package visual-fill-column)
+(defun writing-mode ()
+  (visual-line-mode t)
+  (visual-fill-column-mode t))
+
 ;; asciidoc
 (use-package adoc-mode
   :mode ("\\.adoc\\'" . adoc-mode)
   :config
-  (add-hook 'adoc-mode-hook 'variable-pitch-mode))
+  (add-hook 'adoc-mode-hook 'writing-mode))
 
-;; magit
+;; org
+(use-package org
+  :config
+  (use-package org-bullets)
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-indent-mode t)
+                             (org-bullets-mode t)
+                             (writing-mode))))
+
+;; git
 (use-package magit
   :bind ("C-x g" . magit-status))
 
@@ -54,11 +93,10 @@
   (nyan-mode 1))
 
 ;; theme
-
-(if (display-graphic-p)
-    (use-package leuven-theme
-      :config
-      (load-theme 'leuven t)))
+(use-package leuven-theme
+  :if (display-graphic-p)
+  :config
+  (load-theme 'leuven t))
 
 ;; settings
 (use-package better-defaults)
@@ -87,7 +125,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (esup magit use-package projectile key-chord evil auctex))))
+    (which-key auto-org-md company esup magit use-package projectile key-chord evil auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
