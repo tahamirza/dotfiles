@@ -10,6 +10,13 @@
 
 (setq use-package-always-ensure t)
 
+;; evil
+(use-package evil
+  :init
+  (setq evil-want-C-i-jump nil)
+  (setq evil-move-beyond-eol t)
+  :config
+  (evil-mode 1))
 
 ;; helm
 (use-package helm
@@ -44,12 +51,23 @@
   (add-hook 'prog-mode-hook 'yas-global-mode))
 
 ;; c++
-(use-package irony)
-(use-package rtags)
-(use-package cmake-ide
+(use-package rtags
+  :init
+  (setq rtags-display-result-backend 'helm)
   :config
-  (add-hook 'c-mode-hook 'cmake-ide-setup)
-  (add-hook 'c++-mode-hook 'cmake-ide-setup))
+  (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+  (rtags-enable-standard-keybindings))
+(use-package irony)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(use-package flycheck-irony
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+(use-package company-irony
+  :config
+  (add-to-list 'company-backends 'company-irony))
 
 ;; auctex
 (use-package tex
