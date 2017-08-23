@@ -1,6 +1,6 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.org/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 ;; install use-package
@@ -58,16 +58,22 @@
   (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
   (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
   (rtags-enable-standard-keybindings))
-(use-package irony)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-(use-package flycheck-irony
+
+(use-package irony
   :config
-  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-(use-package company-irony
-  :config
-  (add-to-list 'company-backends 'company-irony))
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (use-package flycheck-irony
+    :config
+    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  (use-package company-irony
+    :config
+    (add-to-list 'company-backends 'company-irony)))
+
+;; c-style
+(setq c-default-style "bsd")
+(setq c-basic-offset 4)
 
 ;; auctex
 (use-package tex
@@ -111,10 +117,10 @@
   (nyan-mode 1))
 
 ;; theme
-(use-package leuven-theme
+(use-package dracula-theme
   :if (display-graphic-p)
   :config
-  (load-theme 'leuven t))
+  (load-theme 'dracula t))
 
 ;; settings
 (use-package better-defaults)
@@ -127,8 +133,6 @@
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
 
-;; c-style
-(setq c-default-style "bsd")
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
@@ -143,7 +147,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (which-key auto-org-md company esup magit use-package projectile key-chord evil auctex))))
+    (dracula-theme which-key auto-org-md company esup magit use-package projectile key-chord evil auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
