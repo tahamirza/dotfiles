@@ -133,12 +133,14 @@
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
 
-
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
 
 ;; windmove
 (windmove-default-keybindings)
+
+;; font size
+(set-face-attribute 'default nil :height 90)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
