@@ -71,6 +71,8 @@
     :config
     (add-to-list 'company-backends 'company-irony)))
 
+(require 'cmake-mode nil t)
+
 ;; c-style
 (setq c-default-style "bsd")
 (setq c-basic-offset 4)
@@ -149,7 +151,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dracula-theme which-key auto-org-md company esup magit use-package projectile key-chord evil auctex))))
+    (dracula-theme which-key auto-org-md company esup magit use-package projectile key-chord evil auctex)))
+ '(safe-local-variable-values
+   (quote
+    ((projectile-project-compilation-cmd . "ninja -C build/")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
