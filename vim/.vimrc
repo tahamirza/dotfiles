@@ -1,35 +1,47 @@
-set nocompatible
+call plug#begin('~/.vim/plugged')
 
-filetype indent plugin on
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
 
-syntax on
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-set wildmenu
-set showcmd
-set hlsearch
+Plug 'justinmk/vim-dirvish'
 
-set ignorecase
-set smartcase
+Plug 'lifepillar/vim-mucomplete'
 
-set autoindent
+Plug 'w0rp/ale'
 
-set ruler
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-set laststatus=2
+Plug 'christoomey/vim-tmux-navigator'
 
-set confirm
+Plug 'lyuts/vim-rtags'
 
-set visualbell
+call plug#end()
 
-set mouse=a
+" completion
+set completeopt+=menuone,noselect,noinsert
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
+inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#chains = {'vim': ['path', 'cmd', 'keyn'], 'default': ['path', 'omni', 'keyn', 'dict', 'uspl']}
+let g:mucomplete#chains.cpp = ['tags', 'ulti', 'incl']
+let g:mucomplete#chains.c = ['tags', 'ulti', 'incl']
 
+" ale
+let g:ale_sign_column_always = 1
+
+" general
 set number
 set relativenumber
 
-set colorcolumn=81
-
-inoremap fd <ESC>
-
-au FileType markdown set tw=80
-
-nnoremap <C-L> :nohl<CR><C-L>
+set exrc
+set secure
