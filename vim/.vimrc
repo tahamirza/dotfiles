@@ -42,6 +42,11 @@ let g:mucomplete#enable_auto_at_startup = 1
 " ale
 let g:ale_sign_column_always = 1
 
+" powerline
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
 " general
 set number
 set relativenumber
