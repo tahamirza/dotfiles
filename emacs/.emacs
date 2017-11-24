@@ -85,17 +85,9 @@
   (setq TeX-PDF-mode 1)
   (setq TeX-engine 'xetex))
 
-;; line wrapping
-(use-package visual-fill-column)
-(defun writing-mode ()
-  (visual-line-mode t)
-  (visual-fill-column-mode t))
-
 ;; asciidoc
 (use-package adoc-mode
-  :mode ("\\.adoc\\'" . adoc-mode)
-  :config
-  (add-hook 'adoc-mode-hook 'writing-mode))
+  :mode ("\\.adoc\\'" . adoc-mode))
 
 ;; org
 (use-package org
@@ -103,8 +95,7 @@
   (use-package org-bullets)
   (add-hook 'org-mode-hook (lambda ()
                              (org-indent-mode t)
-                             (org-bullets-mode t)
-                             (writing-mode))))
+                             (org-bullets-mode t))))
 
 ;; git
 (use-package magit
@@ -137,9 +128,6 @@
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
-
-;; windmove
-(windmove-default-keybindings)
 
 ;; font size
 (set-face-attribute 'default nil :height 90)
