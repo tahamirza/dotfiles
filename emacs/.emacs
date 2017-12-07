@@ -10,14 +10,6 @@
 
 (setq use-package-always-ensure t)
 
-;; evil
-(use-package evil
-  :init
-  (setq evil-want-C-i-jump nil)
-  (setq evil-move-beyond-eol t)
-  :config
-  (evil-mode 1))
-
 ;; helm
 (use-package helm
   :bind ("M-x" . helm-M-x)
@@ -128,6 +120,9 @@
 
 ;; recompile hotkey
 (global-set-key [(f9)] 'recompile)
+
+;; easier switching windows
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; font size
 (set-face-attribute 'default nil :height 90)
