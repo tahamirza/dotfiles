@@ -38,11 +38,13 @@
 ;; on the fly syntax checking
 (use-package flycheck
   :config
-  (add-hook 'after-init-hook 'global-flycheck-mode))
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (advice-add 'flycheck-relevant-error-other-file-p :override (lambda (&rest args) nil)))
 
 ;; snippets
 (use-package yasnippet
   :config
+  (use-package yasnippet-snippets)
   (add-hook 'prog-mode-hook 'yas-global-mode))
 
 ;; c++
@@ -71,6 +73,10 @@
 ;; c-style
 (setq c-default-style "bsd")
 (setq c-basic-offset 4)
+
+;; scheme
+(use-package geiser
+  :hook (scheme-mode . geiser-mode))
 
 ;; auctex
 (use-package tex
@@ -117,6 +123,7 @@
 (setq inhibit-startup-screen t)
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message 'nil)
+(setq initial-buffer-choice "~")
 
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
@@ -129,6 +136,9 @@
 
 ;; font size
 (set-face-attribute 'default nil :height 90)
+
+;; save bookmarks after every change
+(setq bookmark-save-flag 1)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
