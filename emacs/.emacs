@@ -125,6 +125,9 @@
 (setq initial-scratch-message 'nil)
 (setq initial-buffer-choice "~")
 
+;; dired
+(setq dired-dwim-target t)
+
 ;; Just open symlinks.
 (setq find-file-visit-truename t)
 
