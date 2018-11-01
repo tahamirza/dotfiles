@@ -13,94 +13,10 @@
 
 (setq use-package-always-ensure t)
 
-;; helm
-(use-package helm
-  :bind ("M-x" . helm-M-x)
-  :bind ("C-x C-f" . helm-find-files)
-  :config
-  (helm-mode 1))
-
-;; projects
-(use-package projectile
-  :config
-  (projectile-mode t))
-
-;; completion
-(use-package company
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
-
 ;; command completion
 (use-package which-key
   :config
   (which-key-mode))
-
-;; on the fly syntax checking
-(use-package flycheck
-  :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-  (advice-add 'flycheck-relevant-error-other-file-p :override (lambda (&rest args) nil)))
-
-;; snippets
-(use-package yasnippet
-  :config
-  (use-package yasnippet-snippets)
-  (add-hook 'prog-mode-hook 'yas-global-mode))
-
-;; c++
-(use-package rtags
-  :init
-  (setq rtags-display-result-backend 'helm)
-  :config
-  (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
-  (rtags-enable-standard-keybindings))
-
-(use-package irony
-  :config
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (use-package flycheck-irony
-    :config
-    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-  (use-package company-irony
-    :config
-    (add-to-list 'company-backends 'company-irony)))
-
-(require 'cmake-mode nil t)
-
-;; c-style
-(setq c-default-style "bsd")
-(setq c-basic-offset 4)
-
-;; scheme
-(use-package geiser
-  :hook (scheme-mode . geiser-mode))
-
-;; auctex
-(use-package tex
-  :defer t
-  :ensure auctex
-  :config
-  (setq TeX-PDF-mode 1)
-  (setq TeX-engine 'xetex))
-
-;; asciidoc
-(use-package adoc-mode
-  :mode ("\\.adoc\\'" . adoc-mode))
-
-;; org
-(use-package org
-  :config
-  (use-package org-bullets)
-  (add-hook 'org-mode-hook (lambda ()
-                             (org-indent-mode t)
-                             (org-bullets-mode t))))
-
-;; git
-(use-package magit
-  :bind ("C-x g" . magit-status))
 
 ;; nyan
 (use-package nyan-mode
@@ -116,14 +32,22 @@
   :config
   (load-theme 'dracula t))
 
-;; settings
-(use-package better-defaults)
+(require 'cmake-mode nil t)
 
-;; got tired of scratch being in lisp mode
-(setq inhibit-startup-screen t)
-(setq initial-major-mode 'fundamental-mode)
-(setq initial-scratch-message 'nil)
-(setq initial-buffer-choice "~")
+;; c-style
+(setq c-default-style "bsd")
+(setq c-basic-offset 4)
+
+(setq inhibit-splash-screen t)
+
+;; messes with the feel of a dark theme
+(menu-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(when (fboundp 'horizontal-scroll-bar-mode)
+  (horizontal-scroll-bar-mode -1))
 
 ;; dired
 (setq dired-dwim-target t)
@@ -136,9 +60,6 @@
 
 ;; easier switching windows
 (global-set-key (kbd "M-o") 'other-window)
-
-;; font size
-(set-face-attribute 'default nil :height 90)
 
 ;; save bookmarks after every change
 (setq bookmark-save-flag 1)
