@@ -3,7 +3,7 @@
 
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+			 ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 ;; install use-package
@@ -66,6 +66,8 @@
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+(load "~/.emacs.d/mail.el")
 
 (setq gc-cons-threshold 16777216
       gc-cons-percentage 0.1)
