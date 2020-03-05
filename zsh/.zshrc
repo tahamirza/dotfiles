@@ -22,7 +22,6 @@ alias t='todo.sh'
 setopt completeinword
 setopt HIST_IGNORE_SPACE
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-source /usr/share/bash-completion/completions/todo.sh
 
 # the prompt
 powerline-daemon -q
