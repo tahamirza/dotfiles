@@ -22,10 +22,6 @@ Plug 'honza/vim-snippets'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'lyuts/vim-rtags'
-
-Plug 'Rip-Rip/clang_complete'
-
 call plug#end()
 
 nnoremap <F9> :Dispatch<CR>
