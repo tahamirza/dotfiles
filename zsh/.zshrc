@@ -26,7 +26,7 @@ source /usr/share/bash-completion/completions/todo.sh
 
 # the prompt
 powerline-daemon -q
-. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # wine
 export WINEARCH=win32
