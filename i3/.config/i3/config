@@ -187,3 +187,10 @@ exec --no-startup-id i3-msg 'workspace 1; exec firefox; workspace 1'
 exec --no-startup-id i3-msg 'workspace 2; exec thunderbird; workspace 1'
 exec nextcloud
 exec steam -silent
+
+
+# for_window [class=".*"] border pixel 0
+# gaps inner 20
+# gaps outer 10
+# smart_gaps on
+# smart_borders on
