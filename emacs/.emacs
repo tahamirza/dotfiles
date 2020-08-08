@@ -34,6 +34,11 @@
 
 (require 'cmake-mode nil t)
 
+(use-package slime
+  :ensure t
+  :config
+  (setq inferior-lisp-program "sbcl"))
+
 ;; c-style
 (setq c-default-style "bsd")
 (setq c-basic-offset 4)
