@@ -1,16 +1,25 @@
 xset -b
 
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "1" "key ctrl"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "2" "key shift"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "3" "key /"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "8" "key ctrl z"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "9" "key 5"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "10" "key m"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "11" "key ["
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "12" "key ]"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "13" "key left"
-xsetwacom set "HUION Huion Tablet Pad pad" "Button" "14" "key right"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "1" "key ctrl"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "2" "key shift"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "3" "key /"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "8" "key ctrl z"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "9" "key 5"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "10" "key m"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "11" "key ["
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "12" "key ]"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "13" "key left"
+# xsetwacom set "HUION Huion Tablet Pad pad" "Button" "14" "key right"
 
-xsetwacom set "HUION Huion Tablet Pen stylus" MapToOutput HEAD-0
-xsetwacom set "HUION Huion Tablet Pad pad" MapToOutput HEAD-0
-xsetwacom set "HUION Huion Tablet Touch Strip pad" MapToOutput HEAD-0
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "1" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "2" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "3" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "8" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "9" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "10" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "11" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "12" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "13" "button 0"
+xsetwacom set "HUION Huion Tablet Pad pad" "Button" "14" "button 0"
+
+xsetwacom set "HUION Huion Tablet Pen stylus" MapToOutput 3456x2160+0+0
