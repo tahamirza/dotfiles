@@ -1,17 +1,21 @@
 (setq gc-cons-threshold 402653184
       gc-cons-percentage 0.6)
 
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("melpa" . "http://melpa.org/packages/")))
-(package-initialize)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; install use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(setq use-package-always-ensure t)
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 ;; command completion
 (use-package which-key
@@ -20,11 +24,11 @@
 
 ;; nyan
 (use-package nyan-mode
-  :init
-  (setq nyan-animate-nyancat t)
-  (setq nyan-wavy-trail t)
   :config
-  (nyan-mode 1))
+  (nyan-mode 1)
+  :custom
+  (nyan-animate-nyancat t)
+  (nyan-wavy-trail t))
 
 ;; theme
 (use-package dracula-theme
@@ -35,9 +39,10 @@
 (require 'cmake-mode nil t)
 
 (use-package slime
-  :ensure t
-  :config
-  (setq inferior-lisp-program "sbcl"))
+  :custom
+  (inferior-lisp-program "sbcl"))
+
+(use-package magit)
 
 ;; c-style
 (setq c-default-style "bsd")
@@ -53,6 +58,8 @@
   (scroll-bar-mode -1))
 (when (fboundp 'horizontal-scroll-bar-mode)
   (horizontal-scroll-bar-mode -1))
+
+(setq scroll-conservatively 1000)
 
 ;; dired
 (setq dired-dwim-target t)
